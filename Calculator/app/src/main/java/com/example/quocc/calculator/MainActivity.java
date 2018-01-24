@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     Button btnPlus, btnMinus, btnMul, btnDiv;
     Button btnDot, btnResult;
+    Toast toast;
     double firstNumber = 0, secondNumber = 0;
 
     @Override
@@ -231,9 +233,7 @@ public class MainActivity extends AppCompatActivity {
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!txtResult.getText().toString().equals("0")) {
-                    txtResult.setText(txtResult.getText() + ".");
-                }
+                txtResult.setText(txtResult.getText() + ".");
             }
         });
 
@@ -247,25 +247,38 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Button btn = getDisabledOperatorButton();
                 if (btn != null) {
-                    if (btn.getText().toString().equals("+"))
+                    if (btn.getText().toString().equals("+")) {
                         txtResult.setText(firstNumber + secondNumber + "");
-                    if (btn.getText().toString().equals("-"))
+                        firstNumber = 0;
+                        secondNumber = 0;
+                        btn.setEnabled(true);
+                    }
+                    if (btn.getText().toString().equals("-")) {
                         txtResult.setText(firstNumber - secondNumber + "");
-                    if (btn.getText().toString().equals("x"))
+                        firstNumber = 0;
+                        secondNumber = 0;
+                        btn.setEnabled(true);
+                    }
+                    if (btn.getText().toString().equals("x")) {
                         txtResult.setText(firstNumber * secondNumber + "");
+                        firstNumber = 0;
+                        secondNumber = 0;
+                        btn.setEnabled(true);
+                    }
                     if (btn.getText().toString().equals("/")) {
-                        if (secondNumber == 0)
-                            txtResult.setText("Cannot divide by zero!");
-                        else
+                        if (secondNumber == 0) {
+                            toast = Toast.makeText(getApplicationContext(), "Cannot divide by zero!", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
                             txtResult.setText(firstNumber / secondNumber + "");
+                            firstNumber = 0;
+                            secondNumber = 0;
+                            btn.setEnabled(true);
+                        }
                     }
                 }
-                firstNumber = 0;
-                secondNumber = 0;
-                btn.setEnabled(true);
             }
         });
-
     }
 
     public Button getDisabledOperatorButton() {
@@ -279,4 +292,5 @@ public class MainActivity extends AppCompatActivity {
             return btnDiv;
         return null;
     }
+
 }
