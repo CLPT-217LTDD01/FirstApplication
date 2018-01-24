@@ -17,17 +17,39 @@
         <TextView
             android:id="@+id/txtResult"
             android:layout_width="match_parent"
-            android:layout_height="176dp"
+            android:layout_height="122dp"
             android:autoText="false"
             android:background="@android:color/darker_gray"
             android:paddingRight="10dp"
-            android:paddingTop="76dp"
             android:textAlignment="viewEnd"
             android:textColor="#fff"
             android:textSize="66sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAC"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="AC"
+                android:textSize="23sp" />
+
+            <Button
+                android:id="@+id/btnBackspace"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Backspace"
+                android:textAllCaps="false"
+                android:textSize="23sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

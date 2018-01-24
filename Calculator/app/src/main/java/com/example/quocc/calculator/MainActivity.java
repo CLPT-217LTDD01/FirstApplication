@@ -14,12 +14,12 @@ public class MainActivity extends AppCompatActivity {
     TextView txtResult;
     Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     Button btnPlus, btnMinus, btnMul, btnDiv;
-    Button btnDot, btnResult;
+    Button btnAC, btnBackspace, btnDot, btnResult;
     Toast toast;
     double firstNumber = 0, secondNumber = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -227,8 +227,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnAC = (Button) findViewById(R.id.btnAC);
+        btnBackspace = (Button) findViewById(R.id.btnBackspace);
         btnDot = (Button) findViewById(R.id.btnDot);
         btnResult = (Button) findViewById(R.id.btnResult);
+
+        btnAC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firstNumber = 0;
+                secondNumber = 0;
+                txtResult.setText("0");
+                if (getDisabledOperatorButton() != null)
+                    getDisabledOperatorButton().setEnabled(true);
+            }
+        });
+
+        btnBackspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!txtResult.getText().toString().equals("0")) {
+                    String s = txtResult.getText().toString();
+                    if (s.length() > 1)
+                        txtResult.setText(s.substring(0, s.length() - 1));
+                    else
+                        txtResult.setText("0");
+                }
+            }
+        });
 
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,6 +317,11 @@ public class MainActivity extends AppCompatActivity {
         if (!btnDiv.isEnabled())
             return btnDiv;
         return null;
+    }
+
+    public boolean checkIntegerNumber(double num) {
+        //Developing
+        return true;
     }
 
 }
