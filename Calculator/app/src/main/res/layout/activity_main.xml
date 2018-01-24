@@ -17,10 +17,14 @@
         <TextView
             android:id="@+id/txtResult"
             android:layout_width="match_parent"
-            android:layout_height="173dp"
+            android:layout_height="176dp"
+            android:autoText="false"
             android:background="@android:color/darker_gray"
+            android:paddingRight="10dp"
+            android:paddingTop="76dp"
+            android:textAlignment="viewEnd"
             android:textColor="#fff"
-            android:textSize="26sp"
+            android:textSize="66sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -189,7 +193,7 @@
                 android:textSize="23sp" />
 
             <Button
-                android:id="@+id/btnDivide"
+                android:id="@+id/btnDiv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
